@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction &mdash; Benford&#39;s Law 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Benford&#39;s Law 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Reference Links" href="References.html"/>
+        <link rel="prev" title="Welcome to Benford’s Law’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Benford's Law
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#background">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benford-s-law">Benford&#8217;s Law</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#graphical-summary">Graphical summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intuitive-explanation">Intuitive Explanation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="References.html">Reference Links</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Benford's Law</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/Introduction.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#introduction" id="id1">Introduction</a><ul>
+<li><a class="reference internal" href="#background" id="id2">Background</a></li>
+<li><a class="reference internal" href="#benford-s-law" id="id3">Benford&#8217;s Law</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="background">
+<h2><a class="toc-backref" href="#id2">Background</a><a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Benford&#8217;s Law  (as it is now known) was first published by American astronomer Simon Newcomb in a paper entitled &#8220;Note on the Frequency of Use of the Different Digits in Natural Numbers&#8221;, which appeared in The American Journal of Mathematics (1881) 4, 39-40. It was re-discovered by Frank Benford in 1938, and he published an article called &#8220;The Law of Anomalous Numbers&#8221; in Proc. Amer. Phil. Soc 78, pp 551-72.</p>
+</div>
+<div class="section" id="benford-s-law">
+<h2><a class="toc-backref" href="#id3">Benford&#8217;s Law</a><a class="headerlink" href="#benford-s-law" title="Permalink to this headline">¶</a></h2>
+<p>Specifically, in data sets, the leading digit(s) is (are) distributed in a specific, nonuniform way. While one might think that the number 1 would appear as the first digit 11 percent of the time (i.e., one of nine possible numbers), it actually appears about 30 percent of the time. Nine, on the other hand, is the first digit less than 5 percent of the time. The theory covers the first digit, second digit, first two digits, last digit and other combinations of digits because the theory is based on a logarithm of probability of occurrence of digits.</p>
+<div class="section" id="graphical-summary">
+<h3>Graphical summary<a class="headerlink" href="#graphical-summary" title="Permalink to this headline">¶</a></h3>
+<p>Benford&#8217;s Law is summarized below in tabular and graphical format for the first two digits of the numbers being observed.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/Benford's_Law.png"><img alt="_images/Benford's_Law.png" src="_images/Benford's_Law.png" style="width: 300px;" /></a>
+</div>
+</div>
+<div class="section" id="intuitive-explanation">
+<h3>Intuitive Explanation<a class="headerlink" href="#intuitive-explanation" title="Permalink to this headline">¶</a></h3>
+<p>An excellent intuitive explanation of the phenomenon is provided here: <a class="reference external" href="http://datagenetics.com/blog/march52012/index.html">How / Why does it work?</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although Simon Newcomb first reported the phenomenon, it is called Benford&#8217;s law in honor of Frank Benford who re-discovered it later.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="References.html" class="btn btn-neutral float-right" title="Reference Links" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to Benford’s Law’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, P. Lysaght.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
