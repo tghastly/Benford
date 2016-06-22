@@ -1,5 +1,5 @@
-Benford's Law
-==============
+Notes on Benford's Law
+======================
 
 Contents:
 ---------
@@ -11,11 +11,7 @@ Contents:
    References
 
 Indices and tables
-==================
+------------------
 
-..
-
-* :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
 
