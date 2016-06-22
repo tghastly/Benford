@@ -36,3 +36,5 @@ An excellent intuitive explanation of the phenomenon is provided here: `How / Wh
 .. NOTE::
 
     Although Simon Newcomb first reported the phenomenon, it is called Benford's law in honor of Frank Benford who re-discovered it later.
+
+
