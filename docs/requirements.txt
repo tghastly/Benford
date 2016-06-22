@@ -1,0 +1,5 @@
+# docs requirements file
+
+# For Juyter Notebooks in Sphinx
+
+nbsphinx
