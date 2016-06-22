@@ -8,7 +8,7 @@ Introduction
 
 Background
 ==========
-Benford's Law  (as it is now known) was first published by American astronomer Simon Newcomb in a paper entitled "Note on the Frequency of Use of the Different Digits in Natural Numbers", which appeared in The American Journal of Mathematics (1881) 4, 39-40. It was re-discovered by Frank Benford in 1938, and he published an article called "The Law of Anomalous Numbers" in Proc. Amer. Phil. Soc 78, pp 551-72.
+Benford's Law was first published by American astronomer Simon Newcomb in a paper entitled "Note on the Frequency of Use of the Different Digits in Natural Numbers", which appeared in The American Journal of Mathematics (1881) 4, 39-40. It was re-discovered by Frank Benford in 1938, and he published an article called "The Law of Anomalous Numbers" in Proc. Amer. Phil. Soc 78, pp 551-72.
 
 
 Benford's Law
