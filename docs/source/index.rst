@@ -8,6 +8,7 @@ Contents:
    :maxdepth: 2
 
    Introduction
+   Benford
    References
 
 Indices and tables

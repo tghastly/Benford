@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="Benford 1.2 documentation" href="index.html"/>
-        <link rel="next" title="Reference Links" href="References.html"/>
+        <link rel="next" title="Benford’s Law" href="Benford.html"/>
         <link rel="prev" title="Notes on Benford’s Law" href="index.html"/> 
 
   
@@ -91,6 +91,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="Benford.html">Benford&#8217;s Law</a></li>
 <li class="toctree-l1"><a class="reference internal" href="References.html">Reference Links</a></li>
 </ul>
 
@@ -136,7 +137,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="introduction">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="introduction">
 <h1><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="table-of-contents">
 <p class="topic-title first">Table of Contents</p>
@@ -180,7 +215,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="References.html" class="btn btn-neutral float-right" title="Reference Links" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Benford.html" class="btn btn-neutral float-right" title="Benford’s Law" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Notes on Benford’s Law" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
