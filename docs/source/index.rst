@@ -1,7 +1,6 @@
 Notes on Benford's Law
 ======================
 
-
 Background
 ----------
 .. toctree::
@@ -14,7 +13,7 @@ Benford's Law & Computer File Sizes
 .. toctree::
    :maxdepth: 2
 
-   Benford
+   Benford_Notebook
 
 Online Resources
 ----------------
@@ -23,8 +22,15 @@ Online Resources
    
    References
 
+Source Code
+-----------
+.. toctree::
+   :maxdepth: 2
+   
+   modules
+
 Indices and tables
 ------------------
 
+* :ref:`modindex`
 * :ref:`search`
-
