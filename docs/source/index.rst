@@ -27,7 +27,7 @@ Source Code
 .. toctree::
    :maxdepth: 2
    
-   modules
+   benford
 
 Indices and tables
 ------------------

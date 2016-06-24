@@ -1,8 +1,5 @@
-benford package
+Benford Package
 ===============
-
-Submodules
-----------
 
 benford.benford module
 ----------------------
@@ -12,11 +9,11 @@ benford.benford module
     :undoc-members:
     :show-inheritance:
 
+benford.predictions module
+--------------------------
 
-Module contents
----------------
-
-.. automodule:: benford
+.. automodule:: benford.predictions
     :members:
     :undoc-members:
     :show-inheritance:
+
