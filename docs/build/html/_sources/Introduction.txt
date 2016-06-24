@@ -49,7 +49,8 @@ Benford's Law is summarized below for the first two digits of the numbers being 
 Here the same data is shown graphically to emphasize just how counter-intuitive the law really is, especially with respect to the first digit probabilities.
 
 .. figure:: ./images/Benford's_Law_Digits_1_2.png
-   :scale: 50%
+   :scale: 75%
+   :width: 500
    :align: center
 
 
