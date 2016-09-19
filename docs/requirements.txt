@@ -4,4 +4,4 @@
 
 numpy
 matplotlib
-nbsphinx
+#nbsphinx  Temporarily commented out to trigger build failure at readthedocs
