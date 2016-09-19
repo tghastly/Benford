@@ -1,8 +1,8 @@
 """
 
-Benford's Law applyied to files sizes on a local hard drive.
+Benford's Law applied to files sizes on a local hard drive.
 
-Note: this is a hacky version - it works but is NOT very Pythonic
+Note: this is a 'hacky' version - it works but is NOT very Pythonic
 
 """
 
