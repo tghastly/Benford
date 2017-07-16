@@ -5,7 +5,44 @@ Logictools overview
 Introduction
 --------------------
 
-The *logictools* overlay consists of programmable hardware blocks to connect to external digital logic circuits. Finite state machines, Boolean logic functions and digital patterns can be generated from Python. A programmable switch connects the inputs and outputs from the hardware blocks to external IO pins. The logictools overlay can also has a trace analyzer to capture data from the IO interface for analysis and debug. 
+The *logictools* overlay enables a Python programmer to create programmable logic circuits that interface to, and control, input-output (IO) signals.  Using the *logictools* library, the programmer can specify, in Python, the digital IO pins he would like to control, and the functions and/or logic values he wants to apply to them.  The API is declarative so the programmer only needs to specify what he wants and the libray will transform his specifications into the necessary circuits. *logictools* also allows the Python programmer to record and observe the operation of the circuits.  
+
+
+*logictools* Overlay Operation
+====================================
+
+We will look first at a block diagram of the *logictools* overlay.  Once we understand how it works, we will learn how to program it, using the functions in the *logictools* API.
+
+Logictools overlay block diagram
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ../../images/logictools_bd.png
+   :height: 100px
+   :width: 200px
+   :scale: 75%
+   :align: center
+
+From the block diagram, we can see five highlighted blocks in the programmable logic (PL) section of the Zynq device.  These are the:
+
+* Boolean Generator
+* Pattern Generator
+* FSM Generator
+* Trace Analyzer, and
+* Interface Switch
+
+All of these blocks are controlled, via a MicroBlaze soft processor.  The functions they perform are specified by Python scripts running on the ARM A9's in the processor subsystem (PS).  Three of the blocks are *generator* blocks.  This means that we can use each of them to *generate* digital signals.  Let's review each of the three generators, in turn.  After that, we will review the Interface Switch and the Trace Analyzer.   
+
+**Boolean Generator**
+The Boolean Generator is an input-output block.  We use the Boolean Generator to generate combinational, Boolean functions which we apply to the inputs of the functions in the Boolean Generator.  The function output appears on a corresponding output pin.  The Boolean Generator can generae multiple, independent, combinatonal Boolean functions simulaneously.
+
+
+
+
+
+that s shows that the *logictools* overlay has 
+
+
+consists of programmable hardware blocks to connect to external digital logic circuits. Finite state machines, Boolean logic functions and digital patterns can be generated from Python. A programmable switch connects the inputs and outputs from the hardware blocks to external IO pins. The logictools overlay can also has a trace analyzer to capture data from the IO interface for analysis and debug. 
 
 Logictools functions
 ---------------------
@@ -26,11 +63,7 @@ The *Boolean Generator* can create combinatorial boolean logic functions. The ex
 The *Trace Analyzer* can capture IO signals and stream the data to the PS DRAM for analysis in the Python environment. The Trace Analyzer can be used standalone to capture external IO signals, or used in combination with the other three logictools functions to monitor data to and from the other blocks.  E.g. the trace analyzer can be used with the pattern generator to verify the data sent to the external pins, or with the FSM to check the input, output or states to verify or debug a design. 
 
 
-Logictools overlay block diagram
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: ../../images/logictools_bd.png
-   :align: center
    
 
 The logictools overlay contains a MicroBlaze subsystem which controls the other blocks in the design, including the Interface Switch. 
