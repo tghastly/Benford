@@ -9,7 +9,7 @@ The *logictools* overlay enables a Python programmer to create programmable logi
 
 
 *logictools* Overlay Operation
-====================================
+-----------------------------------------
 
 We will look first at a block diagram of the *logictools* overlay.  Once we understand how it works, we will learn how to program it, using the functions in the *logictools* API.
 
@@ -30,62 +30,35 @@ From the block diagram, we can see five highlighted blocks in the programmable l
 * Trace Analyzer, and
 * Interface Switch
 
-All of these blocks are controlled, via a MicroBlaze soft processor.  The functions they perform are specified by Python scripts running on the ARM A9's in the processor subsystem (PS).  Three of the blocks are *generator* blocks.  This means that we can use each of them to *generate* digital signals.  Let's review each of the three generators, in turn.  After that, we will review the Interface Switch and the Trace Analyzer.   
+The functions each block performs are specified by Python scripts running on the ARM A9's in the processor subsystem (PS).  The logictools overlay also contains a MicroBlaze subsystem which controls all the other blocks, as directed by the ARM A9s.  Three of the five blocks are *generator* blocks.  This means that we can use each of them to *generate* digital signals.  Let's review each of the three generators, in turn.  After that, we will review the Interface Switch and the Trace Analyzer.   
 
 **Boolean Generator**
+
 The Boolean Generator is an input-output block.  We use the Boolean Generator to generate combinational, Boolean functions which we apply to the inputs of the functions in the Boolean Generator.  The function output appears on a corresponding output pin.  The Boolean Generator can generate multiple, independent, combinatonal Boolean functions simulaneously.  The functions and the pins to which they are applied are specified in Python using the *logictools* API.
 
 **Pattern Generator**
+
 The Pattern Generator is an output block.  With this block, we can specify a sequence of logic values which we want to appear on its output pins.  These sequences of logic values are known as *digital patterns*.  A digital pattern can be applied to multiple pins simultaneously.  The values on each pin are completely independent of the values on any other pin.  Each value is applied to a pin, for one or more clock cycles, as determined by the pattern specification. The patterns and the pins to which they are applied are specified in Python using the *logictools* API.
 
 **FSM Generator**
-The Boolean Generator is an input-output block.  The acronym *FSM* is short for *Finite State Machine* (sometimes referred to as an automaton).  FSMs allow us to construct *stateful* Boolean machines.  A simple example of a FSM is a binary counter, which increments its value every time it is stimulated by a clock signal.   The key characteristic of FSMs is that they incorporate memory elements so they are capable or remembering what state they are in, at any time.  With the FSM Generator, we specify in Python which pins we want as the inputs to the FSM, and which pins we want as its outputs.  We can then completely specify the behavior of our FSM, and the FSM Generator will realize the FSM circuit for that behavior. 
+
+The Boolean Generator is an input-output block.  The acronym *FSM* is short for *Finite State Machine* (sometimes referred to as an automaton).  FSMs allow us to construct *stateful* Boolean machines.  A simple example of a FSM is a binary counter, which increments its value every time it is stimulated by a clock signal.   The key characteristic of FSMs is that they incorporate memory elements so they are capable or remembering what state they are in, at any time.  With the FSM Generator, we specify in Python which pins we want as the inputs to the FSM, and which pins we want as its outputs.  We can then completely specify the behavior of our FSM, and the FSM Generator will realize the FSM circuit for that behavior.
+
+Note that both the Pattern Generator and FSM Generator are connected to a direct memory access (DMA) unit which is controlled by the MicroBlaze subsystem, as directed by the Python scripts running on the ARM A9 CPUs. The DMA is used to stream configuration data to the Pattern Generator and FSM.
 
 **Interface Switch**
+
 The Interface Switch is a programmable switch that connects to external IO pins of the PL.  Each of the generators is also connected to the Interface Switch.  By programming the switch, from the *logictools* API, we can decide which pins are inputs and which pins are outputs for our design.  We also declare which generator pins should connect to each of these IO signals.  The programmability of the Interface Switch allows us to use the *logictools* overlay to interface to lots of different external devices.  We simply have to change the pin definitions to match the pin-outs of whatever external device we are connecting to. 
 
 When combined with one or more of the generators, the Interface Switch enables us to interface to, and interact with, a wide variety of digital devices and circuits. 
 
 **Trace Analyzer**
-The Trace Analyzer is an input-only block.  Unlike the generators, it is connected to the output of the Interface Switch.  All of the IO signals appear as inputs to the Trace Analyzer.  These signals may be are outputs driven by the generators, or inputs driven by circuits external to the PL.  The Trace Analyzer captures and records the IO signals. Its output is streamed back to the DRAM in the PS to be post-processed by Python scripts running on the ARM A9 CPUs in the PS.  The Trace Analyzer allows us to verify that the output signals we have specified from the generators are being applied correctly.  It also allows us to debug and analyze the opearion of the external interface.  
 
+The Trace Analyzer is an input-only block.  Unlike the generators, it is connected to the output of the Interface Switch.  All of the IO signals appear as inputs to the Trace Analyzer.  These signals may be are outputs driven by the generators, or inputs driven by circuits external to the PL.  The Trace Analyzer captures and records the IO signals. Its output is connected to a DMA unit which streams the data back to the DRAM in the PS to be post-processed by Python scripts running on the ARM A9 CPUs in the PS.  The Trace Analyzer allows us to verify that the output signals we have specified from the generators are being applied correctly.  It also allows us to debug and analyze the opearion of the external interface.  
 
 
 
 *logictools* overlay
-
-
-The logictools overlay can also has a trace analyzer to capture data from the IO interface for analysis and debug. 
-
-Logictools functions
----------------------
-
-The logictools overlay includes four main hardware blocks:
-
-* Pattern Generator
-* FSM Generator
-* Boolean Generator
-* Trace Analyzer
-
-The *Pattern Generator* can be programmed to generate and stream digital patterns to the IO pins. This can be used as a stimulus to an external circuit. 
-
-The *FSM Generator* can create a finite state machine from a Python description. The inputs and outputs and states of the FSM can be connected to external IO pins.
-
-The *Boolean Generator* can create combinatorial boolean logic functions. The external IO pins are used as inputs and outputs. 
-
-The *Trace Analyzer* can capture IO signals and stream the data to the PS DRAM for analysis in the Python environment. The Trace Analyzer can be used standalone to capture external IO signals, or used in combination with the other three logictools functions to monitor data to and from the other blocks.  E.g. the trace analyzer can be used with the pattern generator to verify the data sent to the external pins, or with the FSM to check the input, output or states to verify or debug a design. 
-
-
-
-   
-
-The logictools overlay contains a MicroBlaze subsystem which controls the other blocks in the design, including the Interface Switch. 
-
-The logictools hardware blocks are connected to an interface switch. The interface switch is attached to IO pins and can be programmed to connect any of the IO to the logictools hardware blocks. 
-
-The Pattern Generator and FSM Generator are connected to a DMA which can be controlled from Python. The DMA is used to stream configuration data to the Pattern Generator and FSM. 
-
-The Trace Analyzer is connected to a DMA which is used to stream trace data back to the PS DRAM, where it can be analyzed from Python. 
 
 
 Logictools IP and  project files
