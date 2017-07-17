@@ -67,9 +67,11 @@ The block diagram for the PYNQ-Z1 logictools overlay is shown below.
    :align: center
 
 
-The only change from the earlier, more generic block diagram of the logictools overlay is that the IO interface is specified in more detail.  For the PYNQ-Z1 board, this interface is the Arduino shield interface, or more precisely those pins of the Arduino shield interface that can be configured as general-purpose IO pins.  The GPIO pin set includes pins D0-D13 and A0-A5 inclusive.  Any Arduino pin may be configured as input or output and may be connected to any Generator pin so long as the pin is not already in use elsewhere.
+The most significant change from the earlier, more generic block diagram of the logictools overlay is that the IO interface is specified in more detail.  For the PYNQ-Z1 board, this interface is the Arduino shield interface, or more precisely those pins of the Arduino shield interface that can be configured as general-purpose IO pins.  The GPIO pin set includes pins D0-D13 and A0-A5 inclusive.  Any Arduino pin may be configured as input or output and may be connected to any Generator pin so long as the pin is not already in use elsewhere.
 
-In adddition to the 20 Ardunio GPIO pins, the 4 pushbuttons and 4 green LEDs of the PYNQ-Z1 board are also included.  The pushbuttons and LEDs are special, because they can only be connected to the inputs and outputs of the Boolean Generator, respectively.  
+In adddition to the 20 Ardunio GPIO pins, the 4 pushbuttons and 4 green LEDs of the PYNQ-Z1 board are also included.  The pushbuttons and LEDs are special, because they can only be connected to the inputs and outputs of the Boolean Generator, respectively.
+
+The block diagram of the PYNQ-Z1 logictools overlay also shows the block RAMs (BRAM) used in the Pattern Generator, FSM Generator and the Trace Analyzer. The size of each BRAM is shown in kilo bytes.
 
 
 
@@ -98,14 +100,49 @@ The project files for the logictools overlay(s) can be found here:
 Operation
 --------------------
 
-The FSM, Boolean, and Pattern generators operate in a similar way, and will be conisdered together. The Trace Analyzer will be considered seperately. 
+The FSM, Boolean, and Pattern generators operate in a similar way, and will be considered together. The Trace Analyzer will be considered separately.
 
-Logictools Generators
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The state diagram below shows the primary states and transitions suppoirted by the logictools API.  Any one of the three generators exists in one of three, mutually-exclusive states.  These states are RESET, READY, and RUNNING as shown by the state machine. 
 
-   .. code-block:: Python
 
-      generators = {BFB, SMB, DPB}
+logictools API state diagram
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ../../images/logictools_API_FSM.png
+   :height: 100px
+   :width: 200px
+   :scale: 75%
+   :align: center
+
+
+**RESET state**
+
+The Interface Switch is attached to the external IO pins. Initially, all IO accessible to the logictools overlay are configured as IO pins and pulled high via a weak pull-up resistor. This prevents the inadvertent driving of any external circuitry that is connected to those pins before the logictools overlay has been configured. 
+
+WithinThe Pattern Generator contains BRAM to store the pattern to be generated. The BRAM is configured with zeros initially. 
+
+Similarly, the FSM Generator configuration is stored in a BRAM which is also configured with zeros initially. 
+
+The Boolean Generator is initially set to <>
+
+**Setup** 
+
+Each block must be configured using the ``setup()`` method before it can be used. This defines a configuration for the block, and the configuration for the Interface Switch to connect the external IO to the builder. Note that the configuration is defined, but the IO are not connected during setup. 
+
+
+**Running**
+
+Once a block has been setup, it can be run. The external IO are connected to the block though the interface switch, and the hardware block will start operating. 
+
+Running will start the block running in continuous mode by default. This is the only mode for the Boolead Generator. 
+
+In continuous mode, the Pattern Generator generates its pattern continuously, looping back to the start when it reaches the end of the pattern. The FSM Generator will continue to run until it is stopped. 
+
+The Pattern Generator can also be run in single-shot mode. In this mode, it will generate its pattern once. 
+The primary transitions for a generator block correspond to its principal methods.
+
+Generator Methods
+^^^^^^^^^^^^^^^^^^^^^^
 
 Each generator has the following methods:
 
@@ -116,35 +153,23 @@ Each generator has the following methods:
 * ``trace()`` - enable/disable trace
 
 
+Logictools Generators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: Python
+
+      import logictools
+      
+      fsm = logictools.StateMachineGenerator()
+      
+      fsm.setup(fsm_spec)
+      
+
+
+
 Any one of these blocks, or any combination can be configured and run synchronously. 
 
-Initial state
-^^^^^^^^^^^^^^^^^^^^^^^^
 
-The interface switch is attached to the external IO pins. Initially, all IO accessible to the logictools overlay are configured as inputs. This prevents the inadvertent driving of any external circuitry that is connected to those pins before the logictools overlay has been configured. 
-
-The Pattern Generator contains BRAM to store the pattern to be generated. The BRAM is configured with zeros initially. 
-
-Similarly, the FSM Generator configuration is stored in a BRAM which is also configured with zeros initially. 
-
-The Boolean Generator is initially set to <>
-
-Setup 
-^^^^^^^^^^^^^^^^^^
-
-Each block must be configured using the ``setup()`` method before it can be used. This defines a configuration for the block, and the configuration for the Interface Switch to connect the external IO to the builder. Note that the configuration is defined, but the IO are not connected during setup. 
-
-
-Running
-^^^^^^^^^^^^^^^^^^
-
-Once a block has been setup, it can be run. The external IO are connected to the block though the interface switch, and the hardware block will start operating. 
-
-Running will start the block running in continuous mode by default. This is the only mode for the Boolead Generator. 
-
-In continuous mode, the Pattern Generator generates its pattern continuously, looping back to the start when it reaches the end of the pattern. The FSM Generator will continue to run until it is stopped. 
-
-The Pattern Generator can also be run in single-shot mode. In this mode, it will generate its pattern once. 
 
 Stepping
 ^^^^^^^^^^^^^^^^^^
