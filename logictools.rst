@@ -33,13 +33,22 @@ From the block diagram, we can see five highlighted blocks in the programmable l
 All of these blocks are controlled, via a MicroBlaze soft processor.  The functions they perform are specified by Python scripts running on the ARM A9's in the processor subsystem (PS).  Three of the blocks are *generator* blocks.  This means that we can use each of them to *generate* digital signals.  Let's review each of the three generators, in turn.  After that, we will review the Interface Switch and the Trace Analyzer.   
 
 **Boolean Generator**
-The Boolean Generator is an input-output block.  We use the Boolean Generator to generate combinational, Boolean functions which we apply to the inputs of the functions in the Boolean Generator.  The function output appears on a corresponding output pin.  The Boolean Generator can generae multiple, independent, combinatonal Boolean functions simulaneously.
+The Boolean Generator is an input-output block.  We use the Boolean Generator to generate combinational, Boolean functions which we apply to the inputs of the functions in the Boolean Generator.  The function output appears on a corresponding output pin.  The Boolean Generator can generate multiple, independent, combinatonal Boolean functions simulaneously.  The functions and the pins to which they are applied are specified in Python using the *logictools* API.
+
+**Pattern Generator**
+The Pattern Generator is an output block.  With this block, we can specify a sequence of logic values which we want to appear on its output pins.  These sequences of logic values are known as *digital patterns*.  A digital pattern can be applied to multiple pins simultaneously.  The values on each pin are completely independent of the values on any other pin.  Each value is applied to a pin, for one or more clock cycles, as determined by the pattern specification. The patterns and the pins to which they are applied are specified in Python using the *logictools* API.
+
+**FSM Generator**
+The Boolean Generator is an input-output block.  The acronym *FSM* is short for *Finite State Machine* (sometimes referred to as an automaton).  FSMs allow us to construct *stateful* Boolean machines.  A simple example of a FSM is a binary counter, which increments its value every time it is stimulated by a clock signal.   The key characteristic of FSMs is that they incorporate memory elements so they are capable or remembering what state they are in, at any time.  With the FSM Generator, we specify in Python which pins we want as the inputs to the FSM, and which pins we want as its outputs.  We can then completely specify the behavior of our FSM, and the FSM Generator will realize the FSM circuit for that behavior. 
+
+**Interface Switch**
+The Interface Switch is a programmable switch that connects to external IO pins of the PL.  Each of the generators is also connected to the Interface Switch.  By programming the switch, from the *logictools* API, we can decide which pins are inputs and which pins are outputs for our design.  We also declare which generator pins should connect to each of these IO signals.  The programmability of the Interface Switch allows us to use the *logictools* overlay to interface to lots of different external devices.  We simply have to change the pin definitions to match the pin-outs of whatever external device we are connecting to. 
+
+**Note**
 
 
 
-
-
-that s shows that the *logictools* overlay has 
+*logictools* overlay
 
 
 consists of programmable hardware blocks to connect to external digital logic circuits. Finite state machines, Boolean logic functions and digital patterns can be generated from Python. A programmable switch connects the inputs and outputs from the hardware blocks to external IO pins. The logictools overlay can also has a trace analyzer to capture data from the IO interface for analysis and debug. 
