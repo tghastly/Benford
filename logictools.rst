@@ -44,14 +44,18 @@ The Boolean Generator is an input-output block.  The acronym *FSM* is short for 
 **Interface Switch**
 The Interface Switch is a programmable switch that connects to external IO pins of the PL.  Each of the generators is also connected to the Interface Switch.  By programming the switch, from the *logictools* API, we can decide which pins are inputs and which pins are outputs for our design.  We also declare which generator pins should connect to each of these IO signals.  The programmability of the Interface Switch allows us to use the *logictools* overlay to interface to lots of different external devices.  We simply have to change the pin definitions to match the pin-outs of whatever external device we are connecting to. 
 
-**Note**
+When combined with one or more of the generators, the Interface Switch enables us to interface to, and interact with, a wide variety of digital devices and circuits. 
+
+**Trace Analyzer**
+The Trace Analyzer is an input-only block.  Unlike the generators, it is connected to the output of the Interface Switch.  All of the IO signals appear as inputs to the Trace Analyzer.  These signals may be are outputs driven by the generators, or inputs driven by circuits external to the PL.  The Trace Analyzer captures and records the IO signals. Its output is streamed back to the DRAM in the PS to be post-processed by Python scripts running on the ARM A9 CPUs in the PS.  The Trace Analyzer allows us to verify that the output signals we have specified from the generators are being applied correctly.  It also allows us to debug and analyze the opearion of the external interface.  
+
 
 
 
 *logictools* overlay
 
 
-consists of programmable hardware blocks to connect to external digital logic circuits. Finite state machines, Boolean logic functions and digital patterns can be generated from Python. A programmable switch connects the inputs and outputs from the hardware blocks to external IO pins. The logictools overlay can also has a trace analyzer to capture data from the IO interface for analysis and debug. 
+The logictools overlay can also has a trace analyzer to capture data from the IO interface for analysis and debug. 
 
 Logictools functions
 ---------------------
