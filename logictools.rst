@@ -8,7 +8,7 @@ Introduction
 The *logictools* overlay enables a Python programmer to create programmable logic circuits that interface to, and control, input-output (IO) signals.  Using the *logictools* library, the programmer can specify, in Python, the digital IO pins he would like to control, and the functions and/or logic values he wants to apply to them.  The API is declarative so the programmer only needs to specify what he wants and the libray will transform his specifications into the necessary circuits. *logictools* also allows the Python programmer to record and observe the operation of the circuits.  
 
 
-*logictools* Overlay Operation
+*logictools* overlay operation
 -----------------------------------------
 
 We will look first at a block diagram of the *logictools* overlay.  Once we understand how it works, we will learn how to program it, using the functions in the *logictools* API.
@@ -54,17 +54,29 @@ When combined with one or more of the generators, the Interface Switch enables u
 
 **Trace Analyzer**
 
-The Trace Analyzer is an input-only block.  Unlike the generators, it is connected to the output of the Interface Switch.  All of the IO signals appear as inputs to the Trace Analyzer.  These signals may be are outputs driven by the generators, or inputs driven by circuits external to the PL.  The Trace Analyzer captures and records the IO signals. Its output is connected to a DMA unit which streams the data back to the DRAM in the PS to be post-processed by Python scripts running on the ARM A9 CPUs in the PS.  The Trace Analyzer allows us to verify that the output signals we have specified from the generators are being applied correctly.  It also allows us to debug and analyze the opearion of the external interface.  
+The Trace Analyzer is an input-only block.  Unlike the generators, it is connected to the output of the Interface Switch.  All of the IO signals appear as inputs to the Trace Analyzer.  These signals may be outputs driven by the generators, or inputs to the PL that are driven by external circuits.  The Trace Analyzer captures and records the IO signals. Its output is connected to a DMA unit which streams the data back to the DRAM in the PS to be post-processed by Python scripts running on the ARM A9 CPUs in the PS.  The Trace Analyzer allows us to verify that the output signals we have specified from the generators are being applied correctly.  It also allows us to debug and analyze the opearion of the external interface.  
+
+The PYNQ-Z1 logictools overlay
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The block diagram for the PYNQ-Z1 logictools overlay is shown below.
+
+.. image:: ../../images/PYNQ-Z1_logictools_bd.png
+   :height: 100px
+   :width: 200px
+   :scale: 75%
+   :align: center
 
 
+The only change from the earlier, more generic block diagram of the logictools overlay is that the IO interface is specified in more detail.  For the PYNQ-Z1 board, this interface is the Arduino shield interface, or more precisely those pins of the Arduino shield interface that can be configured as general-purpose IO pins.  The GPIO pin set includes pins D0-D13 and A0-A5 inclusive.  Any Arduino pin may be configured as input or output and may be connected to any Generator pin so long as the pin is not already in use elsewhere.
 
-*logictools* overlay
+In adddition to the 20 Ardunio GPIO pins, the 4 pushbuttons and 4 green LEDs of the PYNQ-Z1 board are also included.  The pushbuttons and LEDs are special, because they can only be connected to the inputs and outputs of the Boolean Generator, respectively.  
+
 
 
 Logictools IP and  project files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-All source code for the hardware blocks is provided. Each block can also be reused standalone in a custom overlay. 
+The source code for all the hardware blocks is provided. Each block can also be reused as a standalone IP in a custom overlay. 
 
 The source files for the logictools IP can be found in the same location as the other PYNQ IP:
 
@@ -79,7 +91,10 @@ The project files for the logictools overlay(s) can be found here:
 
    ``<GitHub Repository>/boards/<board>/logictools``
 
-   
+
+
+*logictools* overlay
+
 Operation
 --------------------
 
